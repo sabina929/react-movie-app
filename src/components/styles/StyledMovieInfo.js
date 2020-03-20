@@ -51,6 +51,7 @@ export const StyledMovieInfo = styled.div`
       font-size: 16px;
       line-height: 0;
       margin-top: 30px;
+      margin-bottom: 15px;
     }
 
     p {

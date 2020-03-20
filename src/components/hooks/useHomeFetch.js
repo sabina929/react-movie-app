@@ -41,7 +41,7 @@ export const useHomeFetch = () => {
 
     useEffect(() => {
         fetchMovies(POPULAR_BASE_URL);
-    }, []) //runs once onmount
+    }, []) //runs once on mount
 
     return [{state, loading, error}, fetchMovies]
 }
