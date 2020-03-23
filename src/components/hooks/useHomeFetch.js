@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {POPULAR_BASE_URL} from '../../config';
 
 
-export const useHomeFetch = () => {
+export const useHomeFetch = searchTerm => {
     const [state, setState] = useState({movies: []});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -40,8 +40,22 @@ export const useHomeFetch = () => {
 
 
     useEffect(() => {
-        fetchMovies(POPULAR_BASE_URL);
+        if(sessionStorage.homeState){
+            // console.log("grabbing from sStorage");
+            setState(JSON.parse(sessionStorage.homeState));
+            setLoading(false);
+        } else {
+            // console.log("grabbing from API");
+            fetchMovies(POPULAR_BASE_URL);
+        }
     }, []) //runs once on mount
+
+    useEffect(() => {
+        if(!searchTerm) {
+            // console.log("writing to sStorage")
+            sessionStorage.setItem('homeState', JSON.stringify(state));
+        }
+    }, [searchTerm, state] )
 
     return [{state, loading, error}, fetchMovies]
 }

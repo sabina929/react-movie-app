@@ -8,7 +8,6 @@ import Movie from './components/Movie';
 import NotFound from './components/elements/NotFound';
 
 
-
 const GlobalStyle = createGlobalStyle`
      * {
        margin: 0;
